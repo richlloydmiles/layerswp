@@ -32,9 +32,27 @@
  * Author URI: http://www.oboxthemes.com/
  * License: GNU General Public License v2 or later
  * License URI: http://www.gnu.org/licenses/gpl-2.0.html
-*/
+ */
 
-jQuery(function($) {
+ jQuery(document).ready(function($) {
+ 	if (jQuery('#widget-layers-widget-post-3-type').length > 0) {
+ 		jQuery(document).on('change', '#widget-layers-widget-post-3-type', function(event) {
+ 			event.preventDefault();
+ 			var post_type =  jQuery(this).val();
+ 			jQuery.ajax({
+ 				type: "POST",
+ 				url: ajaxurl,
+ 				data: { action: 'cpt_category_action' , param: post_type }
+ 			}).done(function( data ) {
+ 				jQuery('#widget-layers-widget-post-3-category').html(data);
+ 			});	
+ 		});		
+ 	}
+ });
+
+
+ jQuery(function($) {
+
 
 	/**
 	* 1 - Enqueue Initialisation Helper
@@ -64,20 +82,20 @@ jQuery(function($) {
  		// Get the container
  		$container = $that.closest( '.layers-image-container' );
 
-		$that.siblings('img').remove();
-		$container.removeClass( 'layers-has-image' );
+ 		$that.siblings('img').remove();
+ 		$container.removeClass( 'layers-has-image' );
 
-		$container.find('input').val('').layers_trigger_change();
-		$that.fadeOut();
-		return false;
-	});
+ 		$container.find('input').val('').layers_trigger_change();
+ 		$that.fadeOut();
+ 		return false;
+ 	});
 
 	// 2.b - Image Upload Button
 	$(document).on( 'click' , '.layers-image-upload-button' , function(e){
 		e.preventDefault();
 
 		// "Hi Mom"
- 		$that = $(this);
+		$that = $(this);
 
  		// Get the container
  		$container = $that.closest( '.layers-image-container' );
@@ -159,7 +177,7 @@ jQuery(function($) {
 		e.preventDefault();
 
 		// "Hi Mom"
- 		$that = $(this);
+		$that = $(this);
 
 		// If the media frame already exists, reopen it.
 		if ( file_frame ) {
@@ -339,12 +357,12 @@ jQuery(function($) {
 		$that = $(this);
 
  		// Get the input value
-		$value = $('#' + $that.attr( 'for' ) ).val();
+ 		$value = $('#' + $that.attr( 'for' ) ).val();
 
 		// Capture the closest fellow form items
 		$form_items = $that.closest( '.layers-form-item' ).siblings( '.layers-form-item' ).length
 
- 		if( 0 == $form_items ){
+		if( 0 == $form_items ){
 			$that.closest( '.layers-pop-menu-wrapper' ).siblings( '.layers-icon-wrapper' ).find( 'span[class^="icon-"]' ).attr( 'class', 'icon-' + $value );
 		}
 		// Toggle active state
@@ -407,7 +425,7 @@ jQuery(function($) {
 
 		$iframe.find('html, body').animate({
 			scrollTop: $iframe.find( '#' + $widget_id ).offset().top
-	    }, 850);
+		}, 850);
 	}
 
 	/**
@@ -423,9 +441,9 @@ jQuery(function($) {
 			var id = $that.data ( 'id' );
 
 			var editor = new MediumEditor('.editible-' + id, {
-					anchorButton: true,
-					anchorButtonClass: 'button'
-				});
+				anchorButton: true,
+				anchorButtonClass: 'button'
+			});
 
 			$( '.editible-' + id  ).on( 'input' , function(e){
 				// "Hi Mom!"
@@ -505,7 +523,7 @@ jQuery(function($) {
 					$that.find( 'li' ).eq(-1).addClass( 'layers-last' );
 					$that.find( 'li' ).eq(-2).addClass( 'layers-last' );
 				}
-		});
+			});
 	});
 
 	/**
@@ -587,7 +605,7 @@ jQuery(function($) {
 			}
 		});
 
-	}
+}
 
 	/**
 	* 14 - Run Initialisations

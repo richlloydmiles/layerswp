@@ -149,9 +149,9 @@ if( ! function_exists( 'layers_setup' ) ) {
 			'header-text' => array(
 				'sitetitle',
 				'tagline',
-			),
+				),
 			'size' => 'medium',
-		) );
+			) );
 
 		// Automatic Feed Links
 		add_theme_support( 'automatic-feed-links' );
@@ -166,17 +166,17 @@ if( ! function_exists( 'layers_setup' ) ) {
 			LAYERS_THEME_SLUG . '-primary-right' => __( 'Right Header Menu' , 'layerswp' ),
 			LAYERS_THEME_SLUG . '-footer' => __( 'Footer Menu' , 'layerswp' ),
 
-		) );
+			) );
 
 		/**
 		* Welcome Redirect
 		*/
 		if( isset($_GET["activated"]) && $pagenow = "themes.php" ) { //&& '' == get_option( 'layers_welcome' )
 
-			update_option( 'layers_welcome' , 1);
+		update_option( 'layers_welcome' , 1);
 
-			wp_safe_redirect( admin_url('admin.php?page=' . LAYERS_THEME_SLUG . '-get-started'));
-		}
+		wp_safe_redirect( admin_url('admin.php?page=' . LAYERS_THEME_SLUG . '-get-started'));
+	}
 
 	} // function layers_setup
 } // if !function layers_setup
@@ -198,7 +198,7 @@ if( ! function_exists( 'layers_register_standard_sidebars' ) ) {
 			'after_widget'	=> '</aside>',
 			'before_title'	=> '<h5 class="section-nav-title">',
 			'after_title'	=> '</h5>',
-		) );
+			) );
 
 		register_sidebar( array(
 			'id'		=> LAYERS_THEME_SLUG . '-left-sidebar',
@@ -207,7 +207,7 @@ if( ! function_exists( 'layers_register_standard_sidebars' ) ) {
 			'after_widget'	=> '</aside>',
 			'before_title'	=> '<h5 class="section-nav-title">',
 			'after_title'	=> '</h5>',
-		) );
+			) );
 
 		register_sidebar( array(
 			'id'		=> LAYERS_THEME_SLUG . '-right-sidebar',
@@ -216,7 +216,7 @@ if( ! function_exists( 'layers_register_standard_sidebars' ) ) {
 			'after_widget'	=> '</aside>',
 			'before_title'	=> '<h5 class="section-nav-title">',
 			'after_title'	=> '</h5>',
-		) );
+			) );
 
 		/**
 		 * Register Footer Sidebars
@@ -229,7 +229,7 @@ if( ! function_exists( 'layers_register_standard_sidebars' ) ) {
 				'after_widget'	=> '</section>',
 				'before_title'	=> '<h5 class="section-nav-title">',
 				'after_title'	=> '</h5>',
-			) );
+				) );
 		} // for footers
 
 		/**
@@ -244,7 +244,7 @@ if( ! function_exists( 'layers_register_standard_sidebars' ) ) {
 				'after_widget'  => '</aside>',
 				'before_title'  => '<h5 class="section-nav-title">',
 				'after_title'   => '</h5>',
-			) );
+				) );
 			register_sidebar( array(
 				'id'        => LAYERS_THEME_SLUG . '-right-woocommerce-sidebar',
 				'name'      => __( 'Right Shop Sidebar' , 'layerswp' ),
@@ -253,7 +253,7 @@ if( ! function_exists( 'layers_register_standard_sidebars' ) ) {
 				'after_widget'  => '</aside>',
 				'before_title'  => '<h5 class="section-nav-title">',
 				'after_title'   => '</h5>',
-			) );
+				) );
 		}
 	}
 }
@@ -274,7 +274,7 @@ if( ! function_exists( 'layers_scripts' ) ) {
 			get_template_directory_uri() . '/assets/js/plugins.js',
 			array(
 				'jquery',
-			),
+				),
 			LAYERS_VERSION
 		); // Sticky-Kit
 
@@ -283,7 +283,7 @@ if( ! function_exists( 'layers_scripts' ) ) {
 			get_template_directory_uri() . '/assets/js/layers.framework.js',
 			array(
 				'jquery',
-			),
+				),
 			LAYERS_VERSION,
 			true
 		); // Framework
@@ -302,7 +302,7 @@ if( ! function_exists( 'layers_scripts' ) ) {
 			get_template_directory_uri() . '/assets/css/framework.css',
 			array() ,
 			LAYERS_VERSION
-		);
+			);
 
 		wp_enqueue_style(
 			LAYERS_THEME_SLUG . '-components',
@@ -339,7 +339,7 @@ if( ! function_exists( 'layers_scripts' ) ) {
 			get_stylesheet_uri(),
 			array() ,
 			LAYERS_VERSION
-		);
+			);
 
 		if( is_admin_bar_showing() ) {
 			wp_enqueue_style(
@@ -386,10 +386,10 @@ if( ! function_exists( 'layers_admin_scripts' ) ) {
 			get_template_directory_uri() . '/core/assets/migrator.js' ,
 			array(
 				'media-upload'
-			),
+				),
 			LAYERS_VERSION,
 			true
-		);
+			);
 
 		wp_localize_script(
 			LAYERS_THEME_SLUG . '-admin-migrator',
@@ -399,24 +399,24 @@ if( ! function_exists( 'layers_admin_scripts' ) ) {
 				'complete_message' => __( 'Import Complete' , 'layerswp' ),
 				'importing_message' => __( 'Importing Your Content' , 'layerswp' ),
 				'duplicate_complete_message' => __( 'Edit Your New Page' , 'layerswp' )
-			)
+				)
 		);// Migrator// Localize Scripts
 		wp_localize_script(
 			LAYERS_THEME_SLUG . '-admin-migrator',
 			"layers_migrator_params",
 			array(
-					'duplicate_layout_nonce' => wp_create_nonce( 'layers-migrator-duplicate' ),
-					'import_layout_nonce' => wp_create_nonce( 'layers-migrator-import' ),
-					'preset_layout_nonce' => wp_create_nonce( 'layers-migrator-preset-layouts' ),
+				'duplicate_layout_nonce' => wp_create_nonce( 'layers-migrator-duplicate' ),
+				'import_layout_nonce' => wp_create_nonce( 'layers-migrator-import' ),
+				'preset_layout_nonce' => wp_create_nonce( 'layers-migrator-preset-layouts' ),
 				)
-		);
+			);
 
 		// Onboarding Process
 		wp_enqueue_script(
 			LAYERS_THEME_SLUG . '-admin-onboarding' ,
 			get_template_directory_uri() . '/core/assets/onboarding.js',
 			array(
-					'jquery'
+				'jquery'
 				),
 			LAYERS_VERSION,
 			true
@@ -428,7 +428,7 @@ if( ! function_exists( 'layers_admin_scripts' ) ) {
 			array(
 				'preset_layout_nonce' => wp_create_nonce( 'layers-migrator-preset-layouts' ),
 				'update_option_nonce' => wp_create_nonce( 'layers-onboarding-update-options' ),
-			)
+				)
 		); // Onboarding ajax parameters
 
 		wp_localize_script(
@@ -437,7 +437,7 @@ if( ! function_exists( 'layers_admin_scripts' ) ) {
 			array(
 				'step_saving_message' => __( 'Saving...' , 'layerswp' ),
 				'step_done_message' => __( 'Done!' , 'layerswp' )
-			)
+				)
 		); // Onboarding localization
 
 		wp_enqueue_script(
@@ -447,7 +447,7 @@ if( ! function_exists( 'layers_admin_scripts' ) ) {
 				'jquery',
 				'jquery-ui-sortable',
 				'wp-color-picker',
-			),
+				),
 			LAYERS_VERSION,
 			true
 		); // Admin JS
@@ -458,7 +458,7 @@ if( ! function_exists( 'layers_admin_scripts' ) ) {
 			array(
 				'backup_pages_nonce' => wp_create_nonce( 'layers-backup-pages' ),
 				'backup_pages_success_message' => __('Your pages have been successfully backed up!', 'layerswp' )
-			)
+				)
 		); // Onboarding ajax parameters
 
 		wp_enqueue_media();
@@ -479,3 +479,24 @@ if( !function_exists( 'layers_excerpt_class' ) ) {
 } // layers_excerpt_class
 add_filter( "the_excerpt", "layers_excerpt_class" );
 add_filter( "get_the_excerpt", "layers_excerpt_class" );
+function cpt_category_action(){
+
+	$reponse = array();
+	if(!empty($_POST['param'])){
+		$categories = get_categories(array('type'=>$_POST['param']));
+	}
+	?>
+	<option value="all" selected >All</option>
+	<?php
+	foreach ($categories as $category ) {
+		?>
+		<option value="<?php echo $category->cat_ID; ?>"><?php echo $category->cat_name; ?></option>
+		<?php
+	}
+
+    //Don't forget to always exit in the ajax function.
+	exit();
+}
+
+
+add_action('wp_ajax_cpt_category_action', 'cpt_category_action');
